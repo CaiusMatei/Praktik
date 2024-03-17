@@ -1,3 +1,6 @@
+@import url(https://db.onlinewebfonts.com/c/43c793eb9fcfce5efd986389cceb93d0?family=DIN);
+@import url(https://db.onlinewebfonts.com/c/30ccfb72498209debe74c42b39616b32?family=DIN-RegularAlternate);
+@import url(https://db.onlinewebfonts.com/c/1bbe3460b053c4f1d67d1f1afecdaa76?family=DIN-Medium);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
