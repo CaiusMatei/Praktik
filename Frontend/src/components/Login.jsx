@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ForgetPass from "./ForgetPass";
-import { state, showGetPass } from "../redux/redux";
+import { state, showGetPass,showUser} from "../redux/redux";
 export default function Login() {
     const navigate = useNavigate();
     const passStatus = state().passStatus;
@@ -13,6 +13,7 @@ export default function Login() {
             console.log(userName);
             console.log(password);
             navigate("/schema");
+            showUser()
         } else {
             alert("Please complete inputs");
         }
