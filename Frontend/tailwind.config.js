@@ -4,7 +4,13 @@ export default {
   "./src/**/*.{js,ts,jsx,tsx}",
 ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            din:[ "DIN", "sans-serif"],
+            din_regular:[ "DIN-RegularAlternate","sans-serif"],
+            din_medium:[ "DIN-Medium","sans-serif"],
+        }
+    },
   },
   plugins: [],
 }
