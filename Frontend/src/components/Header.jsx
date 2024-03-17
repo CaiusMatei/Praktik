@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/Chas-Logo.png";
 import { state } from "../redux/redux";
 export default function Header() {
@@ -7,7 +7,7 @@ export default function Header() {
     const [showSearch, setShowSearch] = useState(false);
     const [searchItem, setSearchItem] = useState("");
     const [showScheme, setShowScheme] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchItem) {
@@ -16,11 +16,11 @@ export default function Header() {
         setShowSearch(false);
     };
     const toUpdate = () => {
-        navigate("/updateProfile")
+        navigate("/updateProfile");
         setShowScheme(true);
     };
     const toSchema = () => {
-        navigate("/schema")
+        navigate("/schema");
         setShowScheme(false);
     };
     return (
@@ -82,7 +82,7 @@ export default function Header() {
                                 onClick={toSchema}
                                 className="w-[57px] h-[57px] bg-[#d5d5d5] rounded-full flex justify-center items-center  mt-[23px]  mx-[15px] "
                             >
-                                <i className="fa-solid fa-calendar-days w-[63px]  text-[30px]  p-1 text-center text-slate-900 "></i>
+                                <i className="fa-solid fa-calendar-days w-[63px]  text-[30px]  p-1 text-center text-slate-600 "></i>
                             </button>
                         </div>
                     )}
