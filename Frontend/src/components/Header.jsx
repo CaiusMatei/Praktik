@@ -1,7 +1,7 @@
 import logo from "../assets/Chas-Logo.png";
 export default function Header() {
     return (
-        <div className="border  w-[10%]">
+        <div className="border  w-[100px]">
             <img
                 src={logo}
                 alt="chas logo"
