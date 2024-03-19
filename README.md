@@ -15,4 +15,5 @@ This application is currently undergoing development.
 ## Tech Stack
 - C#
 - JavaScript (React.js)
+- MS SQL
 - and more...
