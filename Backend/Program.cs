@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Backend.LIADbContext;
+using Backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

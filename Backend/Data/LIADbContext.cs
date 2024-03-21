@@ -1,7 +1,7 @@
 ﻿using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.LIADbContext
+namespace Backend.Data
 {
     public class LIADbContext : DbContext
     {
