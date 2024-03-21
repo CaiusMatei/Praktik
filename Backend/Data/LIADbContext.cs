@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.LIADbContext
 {
@@ -7,5 +8,7 @@ namespace Backend.LIADbContext
         public LIADbContext(DbContextOptions<LIADbContext> options) : base(options)
         {
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }
