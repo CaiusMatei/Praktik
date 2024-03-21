@@ -4,8 +4,8 @@ export default function UpdateProfile() {
     const [showPass1, setShowPass1] = useState(true);
     const [showPass2, setShowPass2] = useState(true);
     return (
-        <div className="w-full flex items-center">
-            <div className=" border w-[709px] h-[673px] ml-[59px] rounded-[12px] my-[56px] bg-[#f1f1f1] ">
+        <div className="w-full flex items-center justify-center">
+            <div className=" border w-[709px] h-[673px] m-[59px] rounded-[12px] bg-[#f1f1f1] ">
                 <div className=" m-[24px]">
                     <h1 className="h-[44px] w-[198px]  flex justify-center items-center font-[700] font-din_medium text-[23px] leading-[36px] text-black">
                         Redigera Profilen
@@ -142,9 +142,19 @@ export default function UpdateProfile() {
                     </div>
                 </form>
             </div>
-            <div>
-                <button type="button">Lägga till användare</button>
-                <button type="button">Se användare</button>
+            <div className=" flex flex-col justify-start w-[450px]   ">
+                <button
+                    type="button"
+                    className="font-[700] font-din_medium text-[20px] leading-[36px] bg-[#f1f1f1] w-[339px] h-[87px]  rounded-[7px] my-[9px]"
+                >
+                    Lägga till användare
+                </button>
+                <button
+                    type="button"
+                    className="font-[700] font-din_medium text-[20px] leading-[36px] bg-black text-white w-[339px] h-[87px] rounded-[7px] my-[9px]"
+                >
+                    Se användare
+                </button>
             </div>
         </div>
     );
