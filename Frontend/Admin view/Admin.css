@@ -101,3 +101,8 @@ body {
     cursor: pointer;
   }
   
+  #forgot-password-link {
+    float: right; /* Float the link to the right */
+    color: black;
+  }
+  
