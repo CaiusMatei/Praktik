@@ -7,16 +7,15 @@ export default function ForgetPass() {
         if (email) {
             console.log(email);
             hideGetPass();
-        }
-        else{
-            alert("Please complete input")
+        } else {
+            alert("Please complete input");
         }
     };
     return (
         <div className="w-full h-full flex flex-col items-center">
             <form onSubmit={handleSubmit} className=" text-end ">
                 <div className="w-full text-center flex justify-start">
-                    <h3 className="w-[128px] h-[36px] font-[700] font-din_medium text-[20px] leading-[36px] text-black text-center">
+                    <h3 className="w-[148px] h-[36px] font-[700] font-din_medium text-[20px] leading-[36px] text-black text-center ">
                         Skriv ditt mejl
                     </h3>
                 </div>
