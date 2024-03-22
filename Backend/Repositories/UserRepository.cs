@@ -27,5 +27,9 @@ namespace Backend.Repositories
         {
             return _dbContext.Users.FirstOrDefault(u=>u.Password == password);
         }
+        public User CheckExistingEmail(string? email)
+        {
+            return _dbContext.Users.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

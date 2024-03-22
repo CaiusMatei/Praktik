@@ -28,8 +28,13 @@ namespace Backend.Controllers
             {
                 Email = dto.Email,
                 Password = dto.Password
+                
             };
-
+            var existingEmail = _userRepository.CheckExistingEmail(dto.Email);
+            if (existingEmail != null)
+            {
+                return BadRequest(new { message = "user already exists" });
+            }
             return Created("The user has been registered successfully.", _userRepository.CreateUser(user));
         }
         [HttpPost("login")]

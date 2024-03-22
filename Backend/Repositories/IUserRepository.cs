@@ -7,5 +7,7 @@ namespace Backend.Repositories
         User CreateUser(User user);
         User GetByEmail(string? email);
         User GetByPassword (string? password);
+
+        User CheckExistingEmail(string? email);
     }
 }
