@@ -26,7 +26,7 @@ export default function Login() {
                 <div className="w-full h-full flex flex-col items-center ">
                     <form onSubmit={handleSubmit} className="text-center  ">
                         <div className="w-full text-center flex justify-center">
-                            <h3 className="w-[80px] h-[36px] font-[700] font-din_medium text-[20px] leading-[36px] text-black text-center">
+                            <h3 className="w-[280px]    h-[36px] font-[700] font-din_medium text-[20px] leading-[36px] text-black text-center">
                                 Logga in
                             </h3>
                         </div>
