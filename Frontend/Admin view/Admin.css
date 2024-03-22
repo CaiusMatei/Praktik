@@ -10,6 +10,37 @@ body {
     background-color: #f2f2f2;
   }
  
+  .loginpicture {
+    width: 390px; 
+    height:430px;
+   
+  }
+  .image-container {
+    margin-right: 27vh;
+    position: relative; 
+  }
+  
+  .image-text {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: #fff; 
+    font-size: 16px;
+    font-weight: bold; 
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-container:hover .loginpicture {
+    filter: blur(5px); 
+    transition: filter 0.3s ease; 
+  }
+  
+  .image-container:hover .image-text {
+    opacity: 1; 
+  }
+  
 .loginphoto {
     position: absolute;
     top: 0;
@@ -27,6 +58,9 @@ body {
     width: 350px; 
   }
   
+
+
+
   h2 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -102,7 +136,7 @@ body {
   }
   
   #forgot-password-link {
-    float: right; /* Float the link to the right */
+    float: right; 
     color: black;
   }
   
