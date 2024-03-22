@@ -19,5 +19,13 @@ namespace Backend.Repositories
 
             return user;
         }
+        public User GetByEmail (string? email)
+        {
+            return _dbContext.Users.FirstOrDefault(u=> u.Email == email);
+        }
+        public User GetByPassword(string? password)
+        {
+            return _dbContext.Users.FirstOrDefault(u=>u.Password == password);
+        }
     }
 }
