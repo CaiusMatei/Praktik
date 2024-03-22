@@ -52,7 +52,7 @@ namespace Backend.Controllers
             {
                 return BadRequest(new { message = "Wrong Password" });
             }
-            return Ok(new { message = "Welcome! You have successfully logged in!:) xdlol" });
+            return Ok(new { message = "Welcome! You have successfully logged in!:)" });
         }
         
     }
