@@ -1,17 +1,50 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function UpdateProfile() {
+    const navigate = useNavigate();
     const [showPass1, setShowPass1] = useState(true);
     const [showPass2, setShowPass2] = useState(true);
+    const [fullName, setFullName] = useState("");
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [email1, setEmail1] = useState("");
+    const [confirmEmail, setConfirmEmail] = useState("");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (fullName) {
+            console.log(fullName);
+        } else {
+            alert("Vänligen ange namn och efternamn");
+        }
+        if (userName) {
+            console.log(userName);
+        } else {
+            alert("Vänligen ange använder namn");
+        }
+        if (password && confirmPassword && password === confirmPassword) {
+            console.log(password);
+        } else {
+            alert("Vänligen ange lösenord");
+        }
+        if (email1 && confirmEmail && email1 === confirmEmail) {
+            console.log(email1);
+        } else {
+            alert("Vänligen ange email");
+        }
+    };
     return (
         <div className="w-full flex items-center justify-center">
-            <div className=" border w-[709px] h-[673px] m-[59px] rounded-[12px] bg-[#f1f1f1] ">
+            <div className=" border w-[709px] h-[673px] m-[59px] rounded-[12px] bg-[#e9e9e9]  ">
                 <div className=" m-[24px]">
                     <h1 className="h-[44px] w-[198px]  flex justify-center items-center font-[700] font-din_medium text-[23px] leading-[36px] text-black">
                         Redigera Profilen
                     </h1>
                 </div>
-                <form action="" className="m-[30px] font-[400] font-din    ">
+                <form
+                    onSubmit={handleSubmit}
+                    className="m-[30px] font-[400] font-din    "
+                >
                     <div className="flex justify-between">
                         <label
                             htmlFor=""
@@ -23,7 +56,9 @@ export default function UpdateProfile() {
                             <input
                                 type="text"
                                 placeholder="Elon Azulay "
-                                className="h-[44px] rounded-[9px] border-[1px] border-black  font-[400] font-din text-[20px] px-4   outline-none placeholder-black bg-[#f1f1f1] "
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                className="h-[44px] rounded-[9px] border-[1px] border-black  font-[400] font-din text-[20px] px-4   outline-none placeholder-black bg-[#e9e9e9]  "
                             />
                         </label>
                         <label
@@ -36,7 +71,9 @@ export default function UpdateProfile() {
                             <input
                                 type="text"
                                 placeholder="@Eazulay"
-                                className="h-[44px] rounded-[9px] border-[1px] border-black  font-[400] font-din text-[20px] px-4   outline-none placeholder-black bg-[#f1f1f1] "
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                className="h-[44px] rounded-[9px] border-[1px] border-black  font-[400] font-din text-[20px] px-4   outline-none placeholder-black bg-[#e9e9e9]  "
                             />
                         </label>
                     </div>
@@ -53,7 +90,11 @@ export default function UpdateProfile() {
                                         showPass1 ? "********" : "Lösenord"
                                     }
                                     autoComplete=""
-                                    className="outline-none bg-[#f1f1f1] placeholder-black "
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                    className="outline-none bg-[#e9e9e9]  placeholder-black "
                                 />
                                 {showPass1 ? (
                                     <i
@@ -84,7 +125,11 @@ export default function UpdateProfile() {
                                             : "Bekräfta lösenord"
                                     }
                                     autoComplete=""
-                                    className="outline-none bg-[#f1f1f1] placeholder-black "
+                                    value={confirmPassword}
+                                    onChange={(e) =>
+                                        setConfirmPassword(e.target.value)
+                                    }
+                                    className="outline-none bg-[#e9e9e9]  placeholder-black "
                                 />
                                 {showPass2 ? (
                                     <i
@@ -110,7 +155,9 @@ export default function UpdateProfile() {
                                 <input
                                     type="email"
                                     placeholder="Elonazulay@chas.se"
-                                    className="outline-none bg-[#f1f1f1] placeholder-black "
+                                    value={email1}
+                                    onChange={(e) => setEmail1(e.target.value)}
+                                    className="outline-none bg-[#e9e9e9]  placeholder-black "
                                 />
                                 <i className="fa-regular fa-envelope text-[25px]"></i>
                             </div>
@@ -126,7 +173,11 @@ export default function UpdateProfile() {
                                 <input
                                     type="email"
                                     placeholder="Elonazulay@chas.se"
-                                    className="outline-none bg-[#f1f1f1] placeholder-black "
+                                    value={confirmEmail}
+                                    onChange={(e) =>
+                                        setConfirmEmail(e.target.value)
+                                    }
+                                    className="outline-none bg-[#e9e9e9]  placeholder-black "
                                 />
                                 <i className="fa-regular fa-envelope text-[25px]"></i>
                             </div>
@@ -142,16 +193,18 @@ export default function UpdateProfile() {
                     </div>
                 </form>
             </div>
-            <div className=" flex flex-col justify-start w-[450px]   ">
+            <div className=" flex flex-col justify-start w-[450px]  mb-20  ">
                 <button
                     type="button"
-                    className="font-[700] font-din_regular text-[23px] leading-[36px] bg-[#f1f1f1] w-[339px] h-[87px]  rounded-[7px] my-[9px] text-black"
+                    onClick={() => navigate("/addUser")}
+                    className="font-[700] font-din_regular text-[23px] leading-[36px] bg-[#e9e9e9] w-[339px] h-[87px]  rounded-[7px] mb-[9px] text-black"
                 >
                     Lägga till användare
                 </button>
                 <button
                     type="button"
-                    className="font-[700] font-din_regular text-[23px] leading-[36px] bg-black text-white w-[339px] h-[87px] rounded-[7px] my-[9px]"
+                    onClick={() => navigate("/users")}
+                    className="font-[700] font-din_regular text-[23px] leading-[36px] bg-black text-white w-[339px] h-[87px] rounded-[7px] mt-[9px]"
                 >
                     Se användare
                 </button>
