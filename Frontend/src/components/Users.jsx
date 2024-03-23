@@ -1,8 +1,8 @@
 export default function Users() {
     return (
         <div>
-            <div className="relative overflow-x-auto m-[85px]">
-                <h1 className="w-[224px] ">Användar lista</h1>
+            <div className="relative overflow-x-auto mx-[85px]">
+                <h1 className="w-[224px] my-[38px] ">Användar lista</h1>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-900 uppercase dark:text-gray-400">
                         <tr>
