@@ -145,13 +145,13 @@ export default function UpdateProfile() {
             <div className=" flex flex-col justify-start w-[450px]   ">
                 <button
                     type="button"
-                    className="font-[700] font-din_medium text-[20px] leading-[36px] bg-[#f1f1f1] w-[339px] h-[87px]  rounded-[7px] my-[9px]"
+                    className="font-[700] font-din_regular text-[23px] leading-[36px] bg-[#f1f1f1] w-[339px] h-[87px]  rounded-[7px] my-[9px] text-black"
                 >
                     Lägga till användare
                 </button>
                 <button
                     type="button"
-                    className="font-[700] font-din_medium text-[20px] leading-[36px] bg-black text-white w-[339px] h-[87px] rounded-[7px] my-[9px]"
+                    className="font-[700] font-din_regular text-[23px] leading-[36px] bg-black text-white w-[339px] h-[87px] rounded-[7px] my-[9px]"
                 >
                     Se användare
                 </button>
