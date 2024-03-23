@@ -25,7 +25,7 @@ export default function Header() {
     };
     return (
         <div className=" flex justify-between">
-            <div className="border">
+            <div className="">
                 <img
                     src={logo}
                     alt="chas logo"
@@ -35,7 +35,7 @@ export default function Header() {
             {showUser && (
                 <div>
                     {!showScheme ? (
-                        <div className="border flex  ">
+                        <div className=" flex  ">
                             {showSearch ? (
                                 <form
                                     onSubmit={handleSearch}
@@ -76,13 +76,20 @@ export default function Header() {
                             )}
                         </div>
                     ) : (
-                        <div>
+                        <div className="flex">
                             <button
                                 type="button"
                                 onClick={toSchema}
                                 className="w-[57px] h-[57px] bg-[#d5d5d5] rounded-full flex justify-center items-center  mt-[23px]  mx-[15px] "
                             >
                                 <i className="fa-solid fa-calendar-days w-[63px]  text-[30px]  p-1 text-center text-slate-600 "></i>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={()=>navigate("/users")}
+                                className="w-[57px] h-[57px] bg-[#d5d5d5] rounded-full flex justify-center items-center  mt-[23px]  mx-[15px] "
+                            >
+                                <i className="fa-regular fa-user w-[63px]  text-[30px]  p-1 text-center text-slate-900  "></i>
                             </button>
                         </div>
                     )}
