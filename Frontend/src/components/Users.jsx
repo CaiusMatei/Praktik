@@ -1,12 +1,12 @@
 export default function Users() {
     return (
         <div>
-            <div className="relative overflow-x-auto mx-[85px] ">
+            <div className="relative overflow-x-auto mx-[85px]   ">
                 <h1 className="w-[224px] my-[38px] font-din_medium text-[30px] ">
                     Användar lista
                 </h1>
                 <table className="w-full text-sm text-left rtl:text-right text-black dark:text-black ">
-                    <thead className="text-[20px] font-din   dark:text-black text-center  ">
+                    <thead className="text-[20px] font-din_medium   dark:text-black text-center  ">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Namn
@@ -23,10 +23,10 @@ export default function Users() {
                         </tr>
                     </thead>
                     <tbody className="text-center   ">
-                        <tr className="bg-[#F2F2F2]   dark:text-black text-[20px] hover:bg-[#EE8091]  ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]   text-[23px]   dark:text-black  hover:bg-[#EE8091]  ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]    "
+                                className="px-6 py-4  text-black border border-[#aea9a9]    "
                             >
                                 Noa
                             </td>
@@ -40,10 +40,10 @@ export default function Users() {
                                 NoaEk
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Alex
                             </td>
@@ -57,10 +57,10 @@ export default function Users() {
                                 Alex.ic
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Gabriela
                             </td>
@@ -74,10 +74,10 @@ export default function Users() {
                                 Gabstr
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Rafael
                             </td>
@@ -91,10 +91,10 @@ export default function Users() {
                                 Raf123
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Lucas
                             </td>
@@ -108,10 +108,10 @@ export default function Users() {
                                 Lucaspenchas
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Amadeus
                             </td>
@@ -125,10 +125,10 @@ export default function Users() {
                                 Amrodiguez
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Isabela
                             </td>
@@ -142,10 +142,10 @@ export default function Users() {
                                 Isabela717
                             </td>
                         </tr>
-                        <tr className="bg-[#F2F2F2]  dark:text-black text-[20px] ">
+                        <tr className=" font-din_regular bg-[#F2F2F2]  dark:text-black text-[23px] ">
                             <td
                                 scope="row"
-                                className="px-6 py-4 font-medium text-black border border-[#aea9a9]  "
+                                className="px-6 py-4  text-black border border-[#aea9a9]  "
                             >
                                 Amanda
                             </td>
@@ -162,7 +162,7 @@ export default function Users() {
                     </tbody>
                 </table>
                 <div className="  text-end my-10">
-                    <button className="w-[317px ] px-[77px] h-[66px] bg-[#EE8091] rounded-[7px] font-din_medium text-[20px]">
+                    <button className="w-[317px ] px-[77px] h-[66px] bg-[#EE8091] rounded-[7px] font-din_medium text-[25px]">
                         Ta bort konto
                     </button>
                 </div>
