@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function Users() {
     const [showSelect, setShowSelect] = useState(false);
+    const [showModal, setShowModal] = useState(false)
     return (
         <div>
             <div className="relative overflow-x-auto mx-[85px]   ">
@@ -170,26 +171,26 @@ export default function Users() {
                     </tbody>
                 </table>
                 <div className="  text-end my-10">
-                    <button className="w-[317px ] px-[77px] h-[66px] bg-[#EE8091] rounded-[7px] font-din_medium text-[25px]">
+                    <button onClick={()=>setShowModal(true)} className="w-[317px ] px-[77px] h-[66px] bg-[#EE8091] rounded-[7px] font-din_medium text-[25px]">
                         Ta bort konto
                     </button>
                 </div>
             </div>
-            <div className="fixed w-full h-screen  z-50 top-0 flex justify-center items-center   ">
+            { showModal && <div className="fixed w-full h-screen  z-50 top-0 flex justify-center items-center   ">
                 <div className="  w-[545px] h-[203px] rounded-[12px] bg-black flex flex-col justify-around items-center ">
                     <h3 className="text-white text-[27px] font-din">
                         Är du säker att du vill ta bort ..... konto
                     </h3>
                     <div>
-                        <button className="w-[170px] h-[57px] bg-[#D9D9D9] rounded-[7px] text-[20px] font-[400] font-din_medium cursor-pointer m-[20px]">
+                        <button onClick={()=>setShowModal(false)} className="w-[170px] h-[57px] bg-[#D9D9D9] rounded-[7px] text-[20px] font-[400] font-din_medium cursor-pointer m-[20px]">
                             Nej
                         </button>
-                        <button className="w-[170px] h-[57px] bg-[#EE8091] rounded-[7px] text-[20px] font-[400] font-din_medium cursor-pointer m-[20px] text-black">
+                        <button onClick={()=>setShowModal(false)} className="w-[170px] h-[57px] bg-[#EE8091] rounded-[7px] text-[20px] font-[400] font-din_medium cursor-pointer m-[20px] text-black">
                             Ja
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 }
