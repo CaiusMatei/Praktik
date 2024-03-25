@@ -14,7 +14,7 @@ export default function Schema() {
                             23 timme förvecka 35{" "}
                         </p>
                     </div>
-                    <div className="w-[341px] h-[56px]  rounded-[12px] flex justify-around items-center shadow-md shadow-gray-400 *:font-din_medium *:text-[20px]  *:font-[700]  *:rounded-[12px] *:w-full *:h-full">
+                    <div className="w-[341px] h-[56px]  rounded-[12px] flex justify-around items-center shadow-md shadow-gray-300 *:font-din_medium *:text-[20px]  *:font-[700]  *:rounded-[12px] *:w-full *:h-full">
                         <button>dag</button>
                         <button>vecka</button>
                         <button>månad</button>
