@@ -6,13 +6,19 @@ namespace Project1.Models.DTOs
     {
         [Required(ErrorMessage = "Please enter an email address.")]
         [DataType(DataType.EmailAddress)]
-        [StringLength(50)]
-        public string? Email { get; set; }
+        [EmailAddress(ErrorMessage = "This email address is not valid.")]
+        [StringLength(200)]
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please enter your password.")]
         [DataType(DataType.Password)]
-        [MinLength(5, ErrorMessage = "Your password has to contain at least 5 characters.")]
+        [MinLength(6, ErrorMessage = "Your password has to contain at least 6 characters.")]
         [MaxLength(20, ErrorMessage = "Your password cannot contain more than 20 characters.")]
-        public string? Password { get; set; }
+        public string Password { get; set; } = string.Empty;
+
+        [Required]
+        public int RoleId { get; } = 2;
+        [Required]
+        public string? RoleType { get; } = "User";
     }
 }

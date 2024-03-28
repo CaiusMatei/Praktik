@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Backend.Migrations
+namespace Project1.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
