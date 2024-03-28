@@ -1,3 +1,4 @@
+Remember to configure your appsettings to suit your own DB
 # Praktik
 
 ## Overview
