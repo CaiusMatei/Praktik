@@ -1,5 +1,6 @@
 ﻿using Project1.Data;
 using Project1.Models;
+using System.Security.Cryptography;
 
 namespace Project1.Repositories
 {
@@ -19,6 +20,7 @@ namespace Project1.Repositories
 
             return user;
         }
+
         public User GetByEmail (string? email)
         {
             return _dbContext.Users.FirstOrDefault(u=> u.Email == email);

@@ -7,8 +7,10 @@ namespace Project1.Data
     {
         public LIADbContext(DbContextOptions<LIADbContext> options) : base(options)
         {
+
         }
 
+        public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

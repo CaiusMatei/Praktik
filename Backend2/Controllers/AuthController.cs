@@ -2,9 +2,12 @@
 using Project1.Models;
 using Project1.Models.DTOs;
 using Project1.Repositories;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
+using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Project1.Controllers
 {
@@ -13,47 +16,64 @@ namespace Project1.Controllers
     public class AuthController : ControllerBase
     {
         private readonly LIADbContext _dbContext;
+        private readonly IConfiguration _configuration;
+        private readonly ITokenRepository _tokenRepository;
         private readonly IUserRepository _userRepository;
 
-        public AuthController(LIADbContext dbContext, IUserRepository userRepository)
+        public AuthController(LIADbContext dbContext, IConfiguration configuration, ITokenRepository tokenRepository, IUserRepository userRepository)
         {
             _dbContext = dbContext;
+            _configuration = configuration;
+            _tokenRepository = tokenRepository;
             _userRepository = userRepository;
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterDto dto)
+        public async Task<ActionResult<User>> Register(RegisterDto request)
         {
             var user = new User
             {
-                Email = dto.Email,
-                Password = dto.Password
-                
+                Email = request.Email,
+                RoleId = request.RoleId,
+                RoleType = request.RoleType,
+                Password = BCrypt.Net.BCrypt.HashPassword(request.Password),
             };
-            var existingEmail = _userRepository.CheckExistingEmail(dto.Email);
+
+            var existingEmail = _userRepository.CheckExistingEmail(request.Email);
+
             if (existingEmail != null)
             {
-                return BadRequest(new { message = "user already exists" });
+                return BadRequest(new { message = "This user already exists." });
             }
+
             return Created("The user has been registered successfully.", _userRepository.CreateUser(user));
         }
-        [HttpPost("login")]
-        public IActionResult Login(LoginDto dto)
-        {
-            var email=_userRepository.GetByEmail(dto.Email);
-            if (email == null)
-            {
-                return BadRequest(new {message="Wrong email"});
-                
 
-            }
-            var password=_userRepository.GetByPassword(dto.Password);
-            if (password == null)
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login(LoginDto request)
+        {
+            var user =_userRepository.GetByEmail(request.Email);
+
+            if (user == null)
             {
-                return BadRequest(new { message = "Wrong Password" });
+                return BadRequest(new { message= "This email address is incorrect."});
             }
-            return Ok(new { message = "Welcome! You have successfully logged in!:)" });
+
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+            {
+                return BadRequest(new { message = "This password is incorrect."});
+            }
+
+            var jwt = _tokenRepository.CreateToken(user);
+
+            return Ok(new {message = "Welcome! You have successfully logged in.", jwt});
         }
-        
+
+        [HttpGet("test"), Authorize(Roles = "Admin")]
+        public async Task<ActionResult<List<User>>> GetAllUsers()
+        {
+            return Ok(await _dbContext.Users.ToListAsync());
+        }
+
     }
 }
