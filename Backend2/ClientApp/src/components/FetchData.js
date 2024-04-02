@@ -14,7 +14,7 @@ export class FetchData extends Component {
 
   static renderForecastsTable(forecasts) {
     return (
-      <table className="table table-striped" aria-labelledby="tableLabel">
+      <table class="table table-striped" aria-labelledby="tableLabel">
         <thead>
           <tr>
             <th>Date</th>

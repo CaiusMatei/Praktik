@@ -8,6 +8,7 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddDbContext<LIADbContext>(options =>
@@ -47,6 +48,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddCors(p =>
+    p.AddDefaultPolicy(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins(configuration["OriginAllowed"]!).AllowCredentials())
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -60,6 +65,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(x => x.AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .WithOrigins(configuration["OriginAllowed"]!)
+                            .AllowCredentials());
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
