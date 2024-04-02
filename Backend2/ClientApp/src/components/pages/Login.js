@@ -40,7 +40,7 @@ export class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div class="flex flex-row gap-4 items-center">
         <div className="image-container">
           <img
             className="loginpicture"
@@ -71,7 +71,7 @@ export class Login extends Component {
             </div>
             <button type="submit">Login</button>
             <p>
-              <a href="#" onClick={this.handleForgotPassword}>
+              <a class="no-underline" href="#" onClick={this.handleForgotPassword}>
                 Forgot Password?
               </a>
             </p>
@@ -88,6 +88,7 @@ export class Login extends Component {
             <h2>Forgot Password</h2>
             <p>Enter your email address to receive a password reset link:</p>
             <input
+              class="mb-2"
               type="email"
               id="forgot-email"
               placeholder="Enter your email"

@@ -10,15 +10,19 @@
   background-color: white;
 } */
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .loginpicture {
   width: 390px;
-  height: 430px;
-
+  aspect-ratio: 1/1;
 }
 
 .image-container {
-  margin-right: 27vh;
-  position: relative;
+  /* margin-right: 27vh; */
+  /* position: relative; */
 }
 
 .image-text {
@@ -66,6 +70,7 @@
   border-bottom: 1px solid #ccc;
   background-color: transparent;
   margin-bottom: 20px;
+  border-radius: 0;
 }
 
 .login-container #username:focus,
