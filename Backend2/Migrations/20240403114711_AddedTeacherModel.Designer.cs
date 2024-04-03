@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project1.Data;
 
@@ -10,9 +11,11 @@ using Project1.Data;
 namespace Project1.Migrations
 {
     [DbContext(typeof(LIADbContext))]
-    partial class LIADbContextModelSnapshot : ModelSnapshot
+    [Migration("20240403114711_AddedTeacherModel")]
+    partial class AddedTeacherModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
