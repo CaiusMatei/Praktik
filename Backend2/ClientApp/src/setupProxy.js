@@ -20,7 +20,7 @@ module.exports = function (app) {
     // the ASP NET Core webserver is unavailable
     onError: onError,
     secure: false,
-    ws: true,
+    //ws: false,
   });
 
   app.use(appProxy);

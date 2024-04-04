@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { } from "react-router-dom";
+import axios from "axios";
 
 export class Login extends Component {
   constructor(props) {
@@ -14,29 +14,18 @@ export class Login extends Component {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    let domain = 'https://localhost';
-    let port = 7009;
-    let url = `${domain}:${port}/auth/login`;
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "*",
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: username, password: password }),
+      const response = await axios.post("/auth/login", {
+        email: username,
+        password: password
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed');
+      if (!response.status === 200) {
+        throw new Error(response.data.message || 'Login failed');
       }
 
-      const data = await response.json();
       // Assuming your backend returns a JWT token upon successful login
-      localStorage.setItem('token', data.jwt); // Store the token in localStorage
+      localStorage.setItem('token', response.data.jwt); // Store the token in localStorage
       this.setState({ loginMessage: "Login successful!" });
       this.props.history.push("/dashboard"); // Redirect to the dashboard on successful login
     } catch (error) {
@@ -61,51 +50,49 @@ export class Login extends Component {
 
   render() {
     return (
-      <div class="flex flex-row gap-4 items-center flex-grow">
-        <div class="relative">
-          <img
-            class="loginpicture rounded-md shadow-md"
-            src="../loginpagepicture.jpg"
-            alt="Chas Academy Logo"
-          />
-          <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-lg font-semibold opacity-0 transition-opacity duration-300">
-            Välkomen till Chas Academy
-          </span>
-        </div>
-        <div class="w-96">
-          <img
-            class="loginphoto"
-            src="../bild_login_vyn-removebg-preview.png"
-            alt="Chas Academy Logo"
-          />
-          <h2 class="text-2xl font-semibold mb-4">Login</h2>
-          <form onSubmit={this.handleLogin}>
-            <div class="mb-4">
-              <label htmlFor="username" class="block mb-1">
-                <i class="fas fa-user"></i> Username:
-              </label>
-              <input type="text" id="username" name="username" class="w-full border-b border-gray-300 focus:border-blue-500 outline-none" required />
-            </div>
-            <div class="mb-4">
-              <label htmlFor="password" class="block mb-1">
-                <i class="fas fa-lock"></i> Password:
-              </label>
-              <input type="password" id="password" name="password" class="w-full border-b border-gray-300 focus:border-blue-500 outline-none" required />
-            </div>
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Login</button>
-            <p>
-              <a class="no-underline text-blue-500 cursor-pointer" href="#" onClick={this.handleForgotPassword}>
-                Forgot Password?
-              </a>
-            </p>
-          </form>
-          <p id="login-message" class="text-red-500 mt-2">{this.state.loginMessage}</p>
-        </div>
+      <div className="d-flex flex-row gap-4 items-center justify-between flex-grow w-100">
+        {/* <div className="relative">
+          <div
+            className="loginpicture-container rounded-md shadow-md bg-cover bg-fixed bg-center transition duration-300 ease-in-out hover:filter hover:blur-md"
+            style={{ backgroundImage: `url("../loginpagepicture.jpg")` }}
+          >
+            <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-lg font-semibold opacity-0 transition-opacity duration-300 hover:opacity-100">
+              Välkomen till Chas Academy
+            </span>
+          </div>
+        </div> */}
+        <img
+          className="loginphoto"
+          src="../bild_login_vyn-removebg-preview.png"
+          alt="Chas Academy Logo"
+        />
+        <form className="flex flex-col flex-grow" onSubmit={this.handleLogin}>
+          <p className="text-2xl font-semibold mb-4">Login</p>
+          <div className="mb-4">
+            <label htmlFor="username" className="block mb-1">
+              <i className="fas fa-user"></i> Username:
+            </label>
+            <input type="text" id="username" name="username" className="w-full border-b border-gray-300 focus:border-blue-500 outline-none" required />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block mb-1">
+              <i className="fas fa-lock"></i> Password:
+            </label>
+            <input type="password" id="password" name="password" className="w-full border-b border-gray-300 focus:border-blue-500 outline-none" required />
+          </div>
+          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Login</button>
+          <p>
+            <button className="no-underline text-blue-500 cursor-pointer" href="#" onClick={this.handleForgotPassword}>
+              Forgot Password?
+            </button>
+          </p>
+          <p id="login-message" className="text-red-500 mt-2">{this.state.loginMessage}</p>
+        </form>
 
         {/* Forgot Password Modal */}
-        <div id="forgot-password-modal" class="modal hidden">
-          <div class="modal-content">
-            <span class="close cursor-pointer" onClick={this.handleCloseModal}>
+        <div id="forgot-password-modal" className="modal hidden hover:bg-opacity-50 hover:bg-black" onClick={this.handleCloseModal}>
+          <div className="modal-content p-4 w-50">
+            <span className="close cursor-pointer" onClick={this.handleCloseModal}>
               &times;
             </span>
             <h2>Forgot Password</h2>
@@ -115,9 +102,9 @@ export class Login extends Component {
               id="forgot-email"
               placeholder="Enter your email"
               required
-              class="mb-2 w-full border border-gray-300 rounded-md px-3 py-2 outline-none"
+              className="mb-2 w-full border border-gray-300 rounded-md px-3 py-2 outline-none"
             />
-            <button id="reset-password-btn" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Reset Password</button>
+            <button id="reset-password-btn" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Reset Password</button>
           </div>
         </div>
       </div>
