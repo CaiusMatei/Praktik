@@ -4,9 +4,6 @@ using Project1.Models.DTOs;
 using Project1.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Cryptography;
-using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Project1.Controllers
@@ -28,7 +25,7 @@ namespace Project1.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpPost("register")]
+        [HttpPost("register"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<User>> Register(RegisterDto request)
         {
             var user = new User
@@ -52,28 +49,48 @@ namespace Project1.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login(LoginDto request)
         {
-            var user =_userRepository.GetByEmail(request.Email);
+            var user = _userRepository.GetByEmail(request.Email);
 
             if (user == null)
             {
-                return BadRequest(new { message= "This email address is incorrect."});
+                return BadRequest(new { message= "This email address is incorrect." });
             }
-
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+            else if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
             {
-                return BadRequest(new { message = "This password is incorrect."});
+                return BadRequest(new { message = "This password is incorrect." });
             }
 
             var jwt = _tokenRepository.CreateToken(user);
 
-            return Ok(new {message = "Welcome! You have successfully logged in.", jwt});
+            return Ok(new { message = "Welcome! You have successfully logged in.", jwt });
         }
 
-        [HttpGet("test"), Authorize(Roles = "Admin")]
+        [HttpDelete("delete"), Authorize(Roles = "Admin")]
+        public async Task<ActionResult<User>> Delete(DeleteDto request)
+        {
+            var user = _userRepository.GetById(request.Id);
+
+            if (user == null)
+            {
+                return BadRequest(new { message = "This user does not exist." });
+            }
+
+            _userRepository.GetRoleId(request.RoleId);
+
+            if (request.RoleId == 1)
+            {
+                return BadRequest(new { message = "Administrators cannot be deleted." });
+            }
+
+            _userRepository.DeleteUser(request.Id);
+
+            return Ok(new { message = "The user has been deleted successfully." });
+        }
+
+        [HttpGet("test")]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
             return Ok(await _dbContext.Users.ToListAsync());
         }
-
     }
 }
