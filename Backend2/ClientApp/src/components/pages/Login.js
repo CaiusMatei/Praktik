@@ -50,7 +50,7 @@ export class Login extends Component {
 
   render() {
     return (
-      <div className="d-flex flex-row gap-4 items-center justify-between flex-grow w-100">
+      <div className="bg-inherit flex flex-col sm:flex-row gap-4 items-center justify-between px-2 text-black">
         {/* <div className="relative">
           <div
             className="loginpicture-container rounded-md shadow-md bg-cover bg-fixed bg-center transition duration-300 ease-in-out hover:filter hover:blur-md"
@@ -61,12 +61,14 @@ export class Login extends Component {
             </span>
           </div>
         </div> */}
-        <img
-          className="loginphoto"
-          src="../bild_login_vyn-removebg-preview.png"
-          alt="Chas Academy Logo"
-        />
-        <form className="flex flex-col flex-grow" onSubmit={this.handleLogin}>
+        <div className="flex">
+          <img
+            className="loginphoto"
+            src="../bild_login_vyn-removebg-preview.png"
+            alt="Chas Academy Logo"
+          />
+        </div>
+        <form className="flex flex-col flex-grow sm:w-96 p-4 rounded-md border-solid border border-slate-500" onSubmit={this.handleLogin}>
           <p className="text-2xl font-semibold mb-4">Login</p>
           <div className="mb-4">
             <label htmlFor="username" className="block mb-1">
