@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line
 import nightwind from "nightwind/helper"
 
 export class NavMenu extends Component {
