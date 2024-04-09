@@ -5,7 +5,7 @@ export class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="text-black">
         <h1>Hello, world!</h1>
         <p>Welcome to your new single-page application, built with:</p>
         <ul>
