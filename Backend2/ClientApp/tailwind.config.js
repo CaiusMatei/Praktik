@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    nightwind: {
+      fixedClass: "prevent-switch", // default 'nightwind-prevent'
+      fixedBlockClass: "prevent-switch-block", // default 'nightwind-prevent-block'
+    },
   },
   plugins: [
     require('tailwindcss'),

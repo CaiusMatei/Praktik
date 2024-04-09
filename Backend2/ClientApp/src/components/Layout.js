@@ -8,7 +8,7 @@ export class Layout extends Component {
 
   render() {
     return (
-      <div className="bg-slate-100 h-screen ">
+      <div className="bg-white h-screen ">
         <NavMenu />
         <main className="container mx-auto" tag="main">
           {this.props.children}

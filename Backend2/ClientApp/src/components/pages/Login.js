@@ -51,44 +51,56 @@ export class Login extends Component {
   render() {
     return (
       <div className="bg-inherit flex flex-col sm:flex-row gap-4 items-center justify-between px-2 text-black">
-        {/* <div className="relative">
+        <div className="flex flex-1 w-16 sm:w-32">
+          <img
+            className="bg-white prevent-switch rounded-xl"
+            src="../bild_login_vyn-removebg-preview.png"
+            alt="Chas Academy Logo"
+          />
+        </div>
+
+        <div className="flex">
           <div
-            className="loginpicture-container rounded-md shadow-md bg-cover bg-fixed bg-center transition duration-300 ease-in-out hover:filter hover:blur-md"
+            className="rounded-md shadow-md bg-cover bg-fixed bg-center transition duration-300 ease-in-out hover:filter hover:blur-md"
             style={{ backgroundImage: `url("../loginpagepicture.jpg")` }}
           >
             <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-lg font-semibold opacity-0 transition-opacity duration-300 hover:opacity-100">
               Välkomen till Chas Academy
             </span>
           </div>
-        </div> */}
-        <div className="flex">
-          <img
-            className="loginphoto"
-            src="../bild_login_vyn-removebg-preview.png"
-            alt="Chas Academy Logo"
-          />
         </div>
-        <form className="flex flex-col flex-grow sm:w-96 p-4 rounded-md border-solid border border-slate-500" onSubmit={this.handleLogin}>
-          <p className="text-2xl font-semibold mb-4">Login</p>
-          <div className="mb-4">
-            <label htmlFor="username" className="block mb-1">
-              <i className="fas fa-user"></i> Username:
-            </label>
-            <input type="text" id="username" name="username" className="w-full border-b border-gray-300 focus:border-blue-500 outline-none" required />
+
+        <form className="flex flex-col flex-grow w-72 sm:w-96 p-4 rounded-md bg-gray-50 shadow-md" onSubmit={this.handleLogin}>
+          <p className="text-2xl font-semibold mb-4 text-center">Logga In</p>
+          <div class="relative mb-4 z-0">
+            <input type="text" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black
+            appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+
+            <label for="username" class="absolute text-sm text-gray-700 dark:text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10
+            origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+            peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"><i className="fas fa-user text-black"></i> Användarnamn</label>
+
+            <p id="username_success_help" class="mt-2 text-xs text-green-600 dark:text-green-400">{this.state.loginMessage}</p>
+            <p id="username_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{this.state.loginMessage}</p>
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block mb-1">
-              <i className="fas fa-lock"></i> Password:
-            </label>
-            <input type="password" id="password" name="password" className="w-full border-b border-gray-300 focus:border-blue-500 outline-none" required />
+          <div class="relative mb-4 z-0">
+            <input type="text" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black
+            appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+
+            <label for="password" class="absolute text-sm text-gray-700 dark:text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10
+            origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+            peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"><i className="fas fa-lock text-black"></i> Lösenord</label>
+
+
+            <p id="password_success_help" class="mt-2 text-xs text-green-600 dark:text-green-400">{this.state.loginMessage}</p>
+            <p id="password_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{this.state.loginMessage}</p>
           </div>
-          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Login</button>
-          <p>
-            <button className="no-underline text-blue-500 cursor-pointer" href="#" onClick={this.handleForgotPassword}>
+          <button type="submit" className="w-32 sm:w-64 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Login</button>
+          <p className="text-right pt-2">
+            <button className="text-gray-500 cursor-pointer hover:border-b-2 border-color-gray-700" href="#" onClick={this.handleForgotPassword}>
               Forgot Password?
             </button>
           </p>
-          <p id="login-message" className="text-red-500 mt-2">{this.state.loginMessage}</p>
         </form>
 
         {/* Forgot Password Modal */}
