@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
+import '../output.css';
+import nightwind from "nightwind/helper"
 
 export class Layout extends Component {
   static displayName = Layout.name;
 
   render() {
     return (
-      <div>
+      <div className="bg-white h-screen ">
         <NavMenu />
-        <Container tag="main">
+        <main className="container mx-auto" tag="main">
           {this.props.children}
-        </Container>
+        </main>
+        <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
       </div>
     );
   }

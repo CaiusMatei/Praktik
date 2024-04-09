@@ -92,5 +92,42 @@ namespace Project1.Controllers
         {
             return Ok(await _dbContext.Users.ToListAsync());
         }
+
+        //[HttpPost("teachers")]
+        //public IActionResult AddTeacher([FromBody] TeacherDto teacherDto)
+        //{
+        //    var teacher = new Teacher
+        //    {
+        //        FirstName = teacherDto.FirstName,
+        //        LastName = teacherDto.LastName
+        //        // Övriga egenskaper för lärare, om sådana finns
+        //    };
+
+        //    _dbContext.Add(teacher);
+        //    return Ok(teacher);
+        //}
+
+        //[HttpGet("teachers")]
+        //public IActionResult GetTeachers()
+        //{
+        //    var teacherDtos = _dbContext.Teachers.ToList();
+
+        //    foreach (var teacher in teacherDtos)
+        //    {
+        //        var teacherDto = new TeacherDto
+        //        {
+        //            FirstName = teacher.FirstName,
+        //            LastName = teacher.LastName,
+              
+        //            // Övriga egenskaper för lärare, om sådana finns
+        //        };
+
+               
+        //    }
+
+        //    return Ok(teacherDtos);
+        //}
     }
+
+    
 }
