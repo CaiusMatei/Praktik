@@ -6,10 +6,10 @@ export class Home extends Component {
 
   render() {
     return (
-      <div className="bg-inherit flex flex-col sm:flex-row flex-wrap gap-4 items-center justify-between px-2 text-black h-full">
+      <div className="bg-inherit flex flex-col flex-wrap gap-4 items-center justify-center px-2 text-black h-full">
         <ChasLogo />
 
-        <form class="flex items-center max-w-sm mx-auto">
+        <form class="flex flex-2 items-center max-w-sm mx-auto">
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative w-full">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
