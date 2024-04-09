@@ -7,6 +7,6 @@ namespace Project1.Models
         [Key]
         public int Id { get; set; }
         public string CourseName { get; set; }
-        public ICollection<Event> Events { get; set; }
+        //public ICollection<Event>? Events { get; set; }
     }
 }
