@@ -1,6 +1,5 @@
 ﻿using Project1.Data;
 using Project1.Models;
-using System.Security.Cryptography;
 
 namespace Project1.Repositories
 {
@@ -21,17 +20,24 @@ namespace Project1.Repositories
             return user;
         }
 
-        public User GetByEmail (string? email)
+        public User DeleteUser(int Id)
         {
-            return _dbContext.Users.FirstOrDefault(u=> u.Email == email);
+            var user = _dbContext.Users.Find(Id);
+
+            _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
+
+            return user;
         }
-        public User GetByPassword(string? password)
-        {
-            return _dbContext.Users.FirstOrDefault(u=>u.Password == password);
-        }
-        public User CheckExistingEmail(string? email)
-        {
-            return _dbContext.Users.FirstOrDefault(u => u.Email == email);
-        }
+
+        public User GetByEmail(string? email) => _dbContext.Users.FirstOrDefault(u => u.Email == email);
+
+        public User GetById(int id) => _dbContext.Users.FirstOrDefault(u => u.Id == id);
+
+        public User GetByPassword(string? password) => _dbContext.Users.FirstOrDefault(u => u.Password == password);
+
+        public User GetRoleId(int roleId) => _dbContext.Users.FirstOrDefault(r => r.RoleId == roleId);
+
+        public User CheckExistingEmail(string? email) => _dbContext.Users.FirstOrDefault(u => u.Email == email);
     }
 }
