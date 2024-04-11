@@ -1,5 +1,7 @@
-﻿using Project1.Data;
+﻿using Azure.Core;
+using Project1.Data;
 using Project1.Models;
+using Project1.Models.DTOs;
 
 namespace Project1.Repositories
 {
@@ -12,22 +14,32 @@ namespace Project1.Repositories
             _dbContext = dbContext;
         }
 
-        public User CreateUser(User user)
+        public User CreateUser(User _user)
         {
-            _dbContext.Users.Add(user);
-            user.Id = _dbContext.SaveChanges();
+            _dbContext.Users.Add(_user);
+            _user.Id = _dbContext.SaveChanges();
 
-            return user;
+            return _user;
         }
 
-        public User DeleteUser(int Id)
+        public User DeleteUser(int id)
         {
-            var user = _dbContext.Users.Find(Id);
+            var _user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
 
-            _dbContext.Users.Remove(user);
+            _dbContext.Users.Remove(_user);
             _dbContext.SaveChanges();
 
-            return user;
+            return _user;
+        }
+
+        public User UpdateUser(int id)
+        {
+            var _user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+
+            _dbContext.Users.Update(_user);
+            _dbContext.SaveChanges();
+
+            return _user;
         }
 
         public User GetByEmail(string? email) => _dbContext.Users.FirstOrDefault(u => u.Email == email);

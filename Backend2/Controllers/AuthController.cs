@@ -26,9 +26,9 @@ namespace Project1.Controllers
         }
 
         [HttpPost("register"), Authorize(Roles = "Admin")]
-        public async Task<ActionResult<User>> Register(RegisterDto request)
+        public async Task<ActionResult<User>> RegisterUser(RegisterDto request)
         {
-            var user = new User
+            var _user = new User
             {
                 Email = request.Email,
                 RoleId = request.RoleId,
@@ -43,34 +43,34 @@ namespace Project1.Controllers
                 return BadRequest(new { message = "This user already exists." });
             }
 
-            return Created("The user has been registered successfully.", _userRepository.CreateUser(user));
+            return Created("The user has been registered successfully.", _userRepository.CreateUser(_user));
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(LoginDto request)
+        public async Task<ActionResult<User>> LoginUser(LoginDto request)
         {
-            var user = _userRepository.GetByEmail(request.Email);
+            var _user = _userRepository.GetByEmail(request.Email);
 
-            if (user == null)
+            if (_user == null)
             {
                 return BadRequest(new { message= "This email address is incorrect." });
             }
-            else if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+            else if (!BCrypt.Net.BCrypt.Verify(request.Password, _user.Password))
             {
                 return BadRequest(new { message = "This password is incorrect." });
             }
 
-            var jwt = _tokenRepository.CreateToken(user);
+            var jwt = _tokenRepository.CreateToken(_user);
 
             return Ok(new { message = "Welcome! You have successfully logged in.", jwt });
         }
 
         [HttpDelete("delete"), Authorize(Roles = "Admin")]
-        public async Task<ActionResult<User>> Delete(DeleteDto request)
+        public async Task<ActionResult<User>> DeleteUser(DeleteDto request)
         {
-            var user = _userRepository.GetById(request.Id);
+            var _user = _userRepository.GetById(request.Id);
 
-            if (user == null)
+            if (_user == null)
             {
                 return BadRequest(new { message = "This user does not exist." });
             }
@@ -85,6 +85,30 @@ namespace Project1.Controllers
             _userRepository.DeleteUser(request.Id);
 
             return Ok(new { message = "The user has been deleted successfully." });
+        }
+
+        [HttpPut("update"), Authorize(Roles = "Admin")]
+        public async Task<ActionResult<User>> UpdateUser(UpdateDto request)
+        {
+            var _user = _userRepository.GetById(request.Id);
+
+            if (_user == null)
+            {
+                return BadRequest(new { message = "This user does not exist." });
+            }
+
+            _user.Email = request.Email;
+
+            var existingEmail = _userRepository.CheckExistingEmail(request.Email);
+
+            if (existingEmail != null)
+            {
+                return BadRequest(new { message = "The new email address must be unique." });
+            }
+
+            _userRepository.UpdateUser(request.Id);
+
+            return Ok(new { message = "The user has been updated successfully." });
         }
 
         [HttpGet("test")]
@@ -128,6 +152,4 @@ namespace Project1.Controllers
         //    return Ok(teacherDtos);
         //}
     }
-
-    
 }
