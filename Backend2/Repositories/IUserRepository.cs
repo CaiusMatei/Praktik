@@ -6,7 +6,7 @@ namespace Project1.Repositories
     {
         User CreateUser(User user);
         User DeleteUser(int id);
-        //User UpdateUser(User user);
+        User UpdateUser(int id);
 
         User GetByEmail(string? email);
         User GetById(int id);
