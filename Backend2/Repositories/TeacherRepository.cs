@@ -1,4 +1,5 @@
-﻿using Project1.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Project1.Data;
 using Project1.Models;
 using System;
 
@@ -18,11 +19,6 @@ namespace Project1.Repositories
             return _dbContext.Teachers.ToList();
         }
 
-        public Teacher GetTeacherByFirstName(string firstName)
-        {
-            return _dbContext.Teachers.FirstOrDefault(t => t.FirstName == firstName);
-        }
-
         public void AddTeacher(Teacher teacher)
         {
             _dbContext.Teachers.Add(teacher);
@@ -33,5 +29,24 @@ namespace Project1.Repositories
             _dbContext.SaveChanges();
         }
 
+        public Teacher GetTeacherById(int teacherId)
+        {
+            
+            return _dbContext.Teachers.FirstOrDefault(teacher => teacher.Id == teacherId);
+            
+        }
+
+        public void UpdateTeacher(Teacher teacher)
+        {
+            _dbContext.Entry(teacher).State = EntityState.Modified;
+            _dbContext.SaveChanges();
+        }
+
+        public void DeleteTeacher(int teacherId)
+        {
+            Teacher teacher = _dbContext.Teachers.Find(teacherId);
+            _dbContext.Teachers.Remove(teacher);
+            _dbContext.SaveChanges();
+        }
     }
 }
