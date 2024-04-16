@@ -2,11 +2,15 @@
   "name": "project1",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://localhost:7009/",
   "dependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.6.4",
+    "lucide-react": "^0.366.0",
     "merge": "^2.1.1",
     "nightwind": "^1.1.13",
     "oidc-client": "^1.11.5",
@@ -16,6 +20,8 @@
     "react-router-dom": "^6.11.0",
     "react-scripts": "^5.0.1",
     "rimraf": "^5.0.0",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
     "web-vitals": "^3.3.1",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",
@@ -53,7 +59,7 @@
   "scripts": {
     "prestart": "node aspnetcore-https && node aspnetcore-react",
     "start": "rimraf ./build && react-scripts start && npx tailwindcss -i ./src/input.css -o ./src/output.css",
-    "build": "react-scripts build && npx tailwindcss -i ./src/input.css -o ./src/output.css",
+    "build": "rimraf ./prestart && react-scripts build && npx tailwindcss -i ./src/input.css -o ./src/output.css",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"

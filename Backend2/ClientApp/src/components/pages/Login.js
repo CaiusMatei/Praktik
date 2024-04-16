@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ChasLogo from '../ChasLogo';
 
 export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginMessage: "",
+      successMessage: "",
+      errorMessage: "",
     };
   }
 
@@ -26,10 +28,10 @@ export class Login extends Component {
 
       // Assuming your backend returns a JWT token upon successful login
       localStorage.setItem('token', response.data.jwt); // Store the token in localStorage
-      this.setState({ loginMessage: "Login successful!" });
+      this.setState({ successMessage: "Login successful!", errorMessage: "" });
       this.props.history.push("/dashboard"); // Redirect to the dashboard on successful login
     } catch (error) {
-      this.setState({ loginMessage: error.message || "Login failed" });
+      this.setState({ errorMessage: error.message || "Login failed", successMessage: "" });
     }
   };
 
@@ -51,13 +53,7 @@ export class Login extends Component {
   render() {
     return (
       <div className="bg-inherit flex flex-col sm:flex-row gap-4 items-center justify-between px-2 text-black">
-        <div className="flex flex-1 w-16 sm:w-32">
-          <img
-            className="bg-white prevent-switch rounded-xl"
-            src="../bild_login_vyn-removebg-preview.png"
-            alt="Chas Academy Logo"
-          />
-        </div>
+        <ChasLogo />
 
         <div className="flex">
           <div
@@ -80,8 +76,8 @@ export class Login extends Component {
             origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
             peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"><i className="fas fa-user text-black"></i> Användarnamn</label>
 
-            <p id="username_success_help" class="mt-2 text-xs text-green-600 dark:text-green-400">{this.state.loginMessage}</p>
-            <p id="username_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{this.state.loginMessage}</p>
+            <p id="username_success_help" class="mt-2 text-xs text-green-600 dark:text-green-400">{this.state.successMessage}</p>
+            <p id="username_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{this.state.errorMessage}</p>
           </div>
           <div class="relative mb-4 z-0">
             <input type="text" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black
@@ -92,8 +88,8 @@ export class Login extends Component {
             peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"><i className="fas fa-lock text-black"></i> Lösenord</label>
 
 
-            <p id="password_success_help" class="mt-2 text-xs text-green-600 dark:text-green-400">{this.state.loginMessage}</p>
-            <p id="password_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{this.state.loginMessage}</p>
+            <p id="password_success_help" class="mt-2 text-xs text-green-600 dark:text-green-400">{this.state.successMessage}</p>
+            <p id="password_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{this.state.errorMessage}</p>
           </div>
           <button type="submit" className="w-32 sm:w-64 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">Login</button>
           <p className="text-right pt-2">
@@ -104,7 +100,7 @@ export class Login extends Component {
         </form>
 
         {/* Forgot Password Modal */}
-        <div id="forgot-password-modal" className="modal hidden hover:bg-opacity-50 hover:bg-black" onClick={this.handleCloseModal}>
+        <div id="forgot-password-modal" className="modal hidden hover:bg-opacity-10 hover:bg-black">
           <div className="modal-content p-4 w-50">
             <span className="close cursor-pointer" onClick={this.handleCloseModal}>
               &times;

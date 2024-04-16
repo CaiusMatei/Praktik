@@ -8,9 +8,9 @@ export class Layout extends Component {
 
   render() {
     return (
-      <div className="bg-white h-screen ">
+      <div className="bg-gradient-to-bl from-sky-400 to-teal-800 h-screen ">
         <NavMenu />
-        <main className="container mx-auto" tag="main">
+        <main className="container mx-auto mh-full" tag="main">
           {this.props.children}
         </main>
         <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
