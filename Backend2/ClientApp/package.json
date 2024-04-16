@@ -2,6 +2,7 @@
   "name": "project1",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://localhost:7009/",
   "dependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "axios": "^1.6.8",
@@ -58,7 +59,7 @@
   "scripts": {
     "prestart": "node aspnetcore-https && node aspnetcore-react",
     "start": "rimraf ./build && react-scripts start && npx tailwindcss -i ./src/input.css -o ./src/output.css",
-    "build": "react-scripts build && npx tailwindcss -i ./src/input.css -o ./src/output.css",
+    "build": "rimraf ./prestart && react-scripts build && npx tailwindcss -i ./src/input.css -o ./src/output.css",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"

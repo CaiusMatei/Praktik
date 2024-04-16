@@ -26,13 +26,13 @@ export class NavMenu extends Component {
             <div className="relative flex items-center justify-between h-16">
               <div className="flex items-center flex-shrink-0 text-black text-xl">
                 <button onClick={this.toggleNavbar} className="text-black">
-                  <div className="flex flex-1 w-12 sm:w-16 text-left">
+                  <div className="flex flex-1 w-12 sm:w-16 sm:p-2 text-left">
                     <img
                       className="bg-white prevent-switch rounded-xl shadow-xl"
                       src="../bild_login_vyn-removebg-preview.png"
                       alt="Chas Academy Logo"
                     />
-                    <Link to="/" className="text-white pl-4 items-center">Chas</Link>
+                    {/* <Link to="/" className="text-white pl-4 items-center">Chas</Link> */}
                   </div>
                 </button>
                 {/* <Link to="/" className="text-black">Chas Calendar</Link> */}
