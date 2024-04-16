@@ -9,7 +9,6 @@ namespace Project1.Models.DTOs
         [EmailAddress(ErrorMessage = "This email address is not valid.")]
         [StringLength(200)]
         public string Email { get; set; } = string.Empty;
-
         [Required(ErrorMessage = "Please enter your password.")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Your password has to contain at least 6 characters.")]

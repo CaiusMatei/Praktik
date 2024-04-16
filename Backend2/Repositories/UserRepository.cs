@@ -1,6 +1,7 @@
-﻿using Project1.Data;
+﻿using Azure.Core;
+using Project1.Data;
 using Project1.Models;
-using System.Security.Cryptography;
+using Project1.Models.DTOs;
 
 namespace Project1.Repositories
 {
@@ -13,25 +14,42 @@ namespace Project1.Repositories
             _dbContext = dbContext;
         }
 
-        public User CreateUser(User user)
+        public User CreateUser(User _user)
         {
-            _dbContext.Users.Add(user);
-            user.Id = _dbContext.SaveChanges();
+            _dbContext.Users.Add(_user);
+            _user.Id = _dbContext.SaveChanges();
 
-            return user;
+            return _user;
         }
 
-        public User GetByEmail (string? email)
+        public User DeleteUser(int id)
         {
-            return _dbContext.Users.FirstOrDefault(u=> u.Email == email);
+            var _user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+
+            _dbContext.Users.Remove(_user);
+            _dbContext.SaveChanges();
+
+            return _user;
         }
-        public User GetByPassword(string? password)
+
+        public User UpdateUser(int id)
         {
-            return _dbContext.Users.FirstOrDefault(u=>u.Password == password);
+            var _user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+
+            _dbContext.Users.Update(_user);
+            _dbContext.SaveChanges();
+
+            return _user;
         }
-        public User CheckExistingEmail(string? email)
-        {
-            return _dbContext.Users.FirstOrDefault(u => u.Email == email);
-        }
+
+        public User GetByEmail(string? email) => _dbContext.Users.FirstOrDefault(u => u.Email == email);
+
+        public User GetById(int id) => _dbContext.Users.FirstOrDefault(u => u.Id == id);
+
+        public User GetByPassword(string? password) => _dbContext.Users.FirstOrDefault(u => u.Password == password);
+
+        public User GetRoleId(int roleId) => _dbContext.Users.FirstOrDefault(r => r.RoleId == roleId);
+
+        public User CheckExistingEmail(string? email) => _dbContext.Users.FirstOrDefault(u => u.Email == email);
     }
 }

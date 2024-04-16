@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string LocationName { get; set; }
-        public ICollection<EventLocation> EventLocations { get; set; }
+        //public ICollection<EventLocation> EventLocations { get; set; }
     }
 }
