@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Project1.Data;
 using Project1.Models;
 using Project1.Models.DTOs;
+using Project1.Repositories;
 
 namespace Project1.Controllers
 {
@@ -11,63 +12,35 @@ namespace Project1.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
-        private readonly LIADbContext _context;
+        //private readonly LIADbContext _context;
 
-        public EventController(LIADbContext context)
+        private readonly IEventRepository _ieventRepository;
+
+        public EventController(IEventRepository ieventRepository)
         {
-            _context = context;
+            _ieventRepository = ieventRepository;
         }
 
         [HttpGet("Events")]
-        public IActionResult GetEvents()
+        public IActionResult GetEvent()
         {
-            var output = (from e in _context.Events
-                          join c in _context.Courses
-                          on e.CourseId equals c.Id
-                          select new 
-                          {
-                              e.Id,
-                             c.CourseName,
-                             e.Description,
-                             e.StartTime,
-                             e.EndTime
-
-                          }).ToList();
-         
-            return Ok(output);
+            var eventList = _ieventRepository.GetEvents();
+            return Ok(eventList);
         }
 
-        [HttpPost("Add")]
+        [HttpPost("Add/Event")]
         public IActionResult AddEvent(EventDto eventDto)
         {
-            var _event = new Event
-            {
-                CourseId = eventDto.CourseId,
-                Description = eventDto.Description,
-                StartTime = eventDto.StartTime,
-                EndTime = eventDto.EndTime
-            };
-            _context.Events.Add(_event);
-            _context.SaveChanges();
-            return Ok(_event);
+             _ieventRepository.AddEvent(eventDto);
+            _ieventRepository.Save();
+            return Ok();
 
         }
 
         [HttpGet("Search/{name}")]
         public IActionResult GetEventByCourse(string name)
         {
-            var output = (from e in _context.Events
-                          join c in _context.Courses
-                          on e.CourseId equals c.Id
-                          where c.CourseName == name
-                          select new
-                          {
-                              c.CourseName,
-                              e.Description,
-                              e.StartTime,
-                              e.EndTime
-
-                          }).ToList();
+           var output = _ieventRepository.GetEventByName(name);
 
             return Ok(output);
         }
@@ -75,23 +48,44 @@ namespace Project1.Controllers
         [HttpPut("Update/{id}")]
         public IActionResult UpdateEvent(int id, EventDto eventDto)
         {
-            var _event = _context.Events.FirstOrDefault(x => x.Id == id);
-            _event.Description = eventDto.Description;
-            _event.StartTime = eventDto.StartTime;
-            _event.EndTime = eventDto.EndTime;
-            _event.CourseId = eventDto.CourseId;
-            _context.Events.Update(_event);
-            _context.SaveChanges();
-            return Ok(_event);
+            _ieventRepository.UpdateEvent(id, eventDto);
+            _ieventRepository.Save();
+            return Ok();
         }
 
         [HttpDelete("Delete/{id}")]
         public IActionResult DeleteEvent(int id)
         {
-            var _event = _context.Events.FirstOrDefault(x => x.Id == id);
-            _context.Events.Remove(_event);
-            _context.SaveChanges();
-            return Ok(_event);
+           _ieventRepository.DeleteEvent(id);
+            _ieventRepository.Save();
+            return Ok();
         }
+
+        [HttpPost("Add/EventTeacher")]
+        public IActionResult AddEventTeacher(EventTeacherDto eventTeacherDto)
+        {
+            _ieventRepository.AddEventTeacher(eventTeacherDto);
+            _ieventRepository.Save();
+            return Ok();
+        }
+
+        [HttpPost("Add/EventLocation")]
+        public IActionResult AddEventLocation(EventLoacationDto eventLoacationDto)
+        {
+            _ieventRepository.AddEventLocation(eventLoacationDto);
+            _ieventRepository.Save();
+            return Ok();
+        }
+
+        [HttpPost("Add/EventEducation")]
+        public IActionResult AddEventEducation( EventEducationDto eventEducationDto)
+        {
+            _ieventRepository.AddEventEducation(eventEducationDto);
+            _ieventRepository.Save();
+            return Ok();
+        }
+
+
+
     }
 }
