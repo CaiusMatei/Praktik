@@ -16,7 +16,7 @@ const AppRoutes = [
         path: "/schedules",
         element: <Schedules />
     },
-
+    {
     path: "/users",
     element: <AdminDashboard />
   }
