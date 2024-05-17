@@ -43,7 +43,7 @@ namespace Project1.Repositories
                 EventId = eventLocationDto.EventId,
                 LocationId = eventLocationDto.locationId
             };
-            _context.SaveChanges();
+            _context.EventLocations.Add(newEventLocation);
         }
 
         public void AddEventTeacher(EventTeacherDto eventTeacherDto)
@@ -53,12 +53,14 @@ namespace Project1.Repositories
                 EventId = eventTeacherDto.EventId,
                 TeacherId = eventTeacherDto.TeacherId
             };
-            _context.SaveChanges();
+            _context.EventTeachers.Add(newEventTeacher);
         }
 
         public void DeleteEvent(int id)
         {
-            _context.Events.FirstOrDefault(x => x.Id == id);
+            var _event = _context.Events.FirstOrDefault(x => x.Id == id);
+            _context.Events.Remove(_event);
+
         }
 
         public IEnumerable<Event> GetEventByName(string name)
