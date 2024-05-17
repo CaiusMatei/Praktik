@@ -4,6 +4,10 @@
   "private": true,
   "proxy": "https://localhost:7009/",
   "dependencies": {
+    "@devexpress/dx-react-core": "^4.0.8",
+    "@devexpress/dx-react-scheduler": "^4.0.8",
+    "@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
+    "@syncfusion/ej2-react-schedule": "^25.1.42",
     "@tailwindcss/container-queries": "^0.1.1",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
