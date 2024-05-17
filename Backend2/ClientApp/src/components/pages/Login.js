@@ -29,7 +29,7 @@ export class Login extends Component {
       // Assuming your backend returns a JWT token upon successful login
       localStorage.setItem('token', response.data.jwt); // Store the token in localStorage
       this.setState({ successMessage: "Login successful!", errorMessage: "" });
-      this.props.history.push("/dashboard"); // Redirect to the dashboard on successful login
+      window.location.href = "/users"; // Redirect to the dashboard on successful login
     } catch (error) {
       this.setState({ errorMessage: error.message || "Login failed", successMessage: "" });
     }
@@ -51,6 +51,7 @@ export class Login extends Component {
   };
 
   render() {
+    
     return (
       <div className="bg-inherit flex flex-col sm:flex-row gap-4 items-center justify-between px-2 text-black">
         <ChasLogo />
@@ -121,3 +122,4 @@ export class Login extends Component {
     );
   }
 }
+export default Login;
