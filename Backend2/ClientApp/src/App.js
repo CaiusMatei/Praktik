@@ -8,6 +8,7 @@ import { Home } from "./components/Home";
 import { AdminDashboard } from "./components/pages/AdminDashboard";
 import { Login } from "./components/pages/Login";
 import Schedules from "./components/Schedules";
+import PageNotFound from './components/pages/PageNotFound';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -22,6 +23,7 @@ export default class App extends Component {
             <Route element={<AdminDashboard />} path="/users" />
             <Route element={<Schedules />} path="/schedules" />
           </Route>
+          <Route element={<PageNotFound />} path="*" />
         </Routes>
       </Layout>
     );
