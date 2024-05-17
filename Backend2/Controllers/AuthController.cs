@@ -111,7 +111,7 @@ namespace Project1.Controllers
             return Ok(new { message = "The user has been updated successfully." });
         }
 
-        [HttpGet("test")]
+        [HttpGet("users")]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
             return Ok(await _dbContext.Users.ToListAsync());

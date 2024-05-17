@@ -1,5 +1,5 @@
 import { Home } from "./components/Home";
-import { Dashboard } from "./components/pages/Dashboard";
+import { AdminDashboard } from "./components/pages/AdminDashboard";
 import { Login } from "./components/pages/Login";
 
 const AppRoutes = [
@@ -12,8 +12,8 @@ const AppRoutes = [
     element: <Login />
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />
+    path: "/users",
+    element: <AdminDashboard />
   }
 ];
 
