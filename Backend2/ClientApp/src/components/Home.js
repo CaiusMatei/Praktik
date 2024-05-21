@@ -8,15 +8,6 @@ export class Home extends Component {
         super(props);
         this.state = {
             searchInput: '',
-            courses: [
-                '.NET22',
-                '.NET23',
-                '.JS22',
-                '.JS23',
-                'UX22',
-                'UX23',
-                // adda fler kurser
-            ],
             filteredCourses: [],
         };
     }
@@ -27,10 +18,22 @@ export class Home extends Component {
 
     handleSearchInputChange = (event) => {
         const searchInput = event.target.value;
-        const filteredCourses = this.state.courses.filter(course =>
-            course.toLowerCase().includes(searchInput.toLowerCase())
-        );
-        this.setState({ searchInput, filteredCourses });
+        this.setState({ searchInput }, () => {
+            this.fetchCourses();
+        });
+    };
+
+    fetchCourses = async () => {
+        try {
+            const response = await fetch(`/api/Course/Courses?search=${this.state.searchInput}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const courses = await response.json();
+            this.setState({ filteredCourses: courses });
+        } catch (error) {
+            console.error('Error fetching courses:', error);
+        }
     };
 
     render() {
@@ -62,8 +65,8 @@ export class Home extends Component {
 
                 {this.state.filteredCourses.length > 0 && (
                     <ul className="mt-4 w-full max-w-sm mx-auto bg-white rounded-lg shadow-md">
-                        {this.state.filteredCourses.map((course, index) => (
-                            <li key={index} className="p-2 border-b last:border-none">{course}</li>
+                        {this.state.filteredCourses.map((course) => (
+                            <li key={course.id} className="p-2 border-b last:border-none">{course.courseName}</li>
                         ))}
                     </ul>
                 )}
