@@ -75,9 +75,7 @@ namespace Project1.Controllers
                 return BadRequest(new { message = "This user does not exist." });
             }
 
-            _userRepository.GetRoleId(request.RoleId);
-
-            if (request.RoleId == 1)
+            if (_user.RoleId == 1)
             {
                 return BadRequest(new { message = "Administrators cannot be deleted." });
             }
