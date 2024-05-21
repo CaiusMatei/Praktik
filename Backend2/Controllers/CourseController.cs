@@ -17,12 +17,14 @@ namespace Project1.Controllers
             _context = context;
         }
 
+        
         [HttpGet("Courses")]
-        public IActionResult Getcourses()
+        public IActionResult GetCourses(string search)
         {
-            var courseList = _context.Courses.ToList();
+            var courseList = string.IsNullOrEmpty(search) ? _context.Courses.ToList() : _context.Courses.Where(c => c.CourseName.ToLower().Contains(search.ToLower())).ToList();
             return Ok(courseList);
         }
+
 
         [HttpPost("Add")]
         public IActionResult AddCourse(CourseDto courseDto)
