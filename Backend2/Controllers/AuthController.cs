@@ -25,7 +25,7 @@ namespace Project1.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpPost("register"), Authorize(Roles = "Admin")]
+        [HttpPost("register"), ]//Authorize(Roles = "Admin")]
         public async Task<ActionResult<User>> RegisterUser(RegisterDto request)
         {
             var _user = new User
