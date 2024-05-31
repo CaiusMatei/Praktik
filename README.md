@@ -22,6 +22,7 @@ This will start the backend and SPA Proxy.
 - [Mostafa Shubber](https://github.com/Chasacademy-mostafa-shubber)
 - [Nshoan Abdlwafa](https://github.com/ChasAcademy-Nshoan-Abdlwafa)
 - [Saga Andersson](https://github.com/sagansagan)
+- [Baqer Al-abedi](https://github.com/BaqerAlabedi)
 
 ## Tech Stack
 
